@@ -6,8 +6,7 @@ services:
       - "8000:8000"  # [Host Port]:[Container Port]
     volumes:
       - .:/app
-
-    
+      
     environment:
       - PYTHONDONTWRITEBYTECODE=1
       - PYTHONUNBUFFERED=1
