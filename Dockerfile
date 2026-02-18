@@ -1,10 +1,15 @@
-FROM python:3.12-slim
+# Use an official Python image
+FROM python:3.10-slim
 
+# Set working directory
 WORKDIR /app
 
-COPY app.py .
+# Copy dependencies and install them
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
 
-CMD ["python", "app.py"]
+# Copy the rest of your app code
+COPY . .
 
-
-
+# Ensure uvicorn listens on 0.0.0.0 so it's accessible outside the container
+CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8000"]
